@@ -13,6 +13,9 @@ use App\Http\Controllers\MyController;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ImplicitController;
+use App\Http\Controllers\UriController;
+
+use App\Http\Controllers\UserRegistration;
 
 
 /*
@@ -53,6 +56,8 @@ class MyClass{
 
 Route::get('/myclass', [ImplicitController::class, 'index']);
 
+Route::get('/foo/bar', [UriController::class, 'index']);
+
 /*
 * LOGIN AND REGISTER PROCESS
 */
@@ -67,6 +72,12 @@ Route::get('register',function(){
 Route::get('/login', [LoginController::class, 'index']);
 
 Route::post('/check', [LoginController::class, 'check'])->name('check');
+
+// Display registration form
+Route::view('/register', 'register');
+
+// Handle registration form submission
+Route::post('/user/register', [UserRegistration::class, 'postRegister']);
 
 // route types
 // get
