@@ -58,6 +58,21 @@ Route::get('/myclass', [ImplicitController::class, 'index']);
 
 Route::get('/foo/bar', [UriController::class, 'index']);
 
+// Basic Response
+Route::get('/basic_response', function () {
+    return 'Hello World';
+});
+
+// Attaching Headers
+Route::get('/header', function () {
+    return response("Hello", 200)->header('Content-Type', 'text/html');
+});
+
+// JSON Response
+Route::get('json', function () {
+    return response()->json(['name' => 'Virat Gandhi', 'state' => 'Gujarat']);
+});
+
 /*
 * LOGIN AND REGISTER PROCESS
 */
