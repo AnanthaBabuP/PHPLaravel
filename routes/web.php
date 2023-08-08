@@ -14,7 +14,7 @@ use App\Http\Controllers\MyController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ImplicitController;
 use App\Http\Controllers\UriController;
-
+use App\Http\Controllers\CookieController;
 use App\Http\Controllers\UserRegistration;
 
 
@@ -72,6 +72,10 @@ Route::get('/header', function () {
 Route::get('json', function () {
     return response()->json(['name' => 'Virat Gandhi', 'state' => 'Gujarat']);
 });
+
+// Cookies
+Route::get('cookie/set', [CookieController::class, 'setCookie']);
+Route::get('cookie/get', [CookieController::class, 'getCookie']);
 
 /*
 * LOGIN AND REGISTER PROCESS
