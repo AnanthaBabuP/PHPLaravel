@@ -78,11 +78,33 @@ Route::get('cookie/set', [CookieController::class, 'setCookie']);
 Route::get('cookie/get', [CookieController::class, 'getCookie']);
 
 /*
+* VIEW
+*/
+
+// Views
+Route::get('/test', function () {
+    return view('view.test');
+});
+
+// Passing Data to Views
+Route::get('/passingViewTest', function () {
+    return view('view.passingTest', ['name' => 'World Rider']);
+});
+
+// Sharing Data with all Views
+Route::get('/sharingData1', function () {
+    return view('view.sharingData1');
+});
+
+Route::get('/sharingData2', function () {
+    return view('view.sharingData2');
+});
+
+/*
 * LOGIN AND REGISTER PROCESS
 */
 
 Route::post('/register',[RegisterController::class,'store'])->name('register');
-
 
 Route::get('register',function(){
     return view('contact.create');
@@ -97,13 +119,6 @@ Route::view('/register', 'register');
 
 // Handle registration form submission
 Route::post('/user/register', [UserRegistration::class, 'postRegister']);
-
-// route types
-// get
-// post
-// put
-// patch
-// delete
 
 // modal
 
