@@ -17,6 +17,13 @@ use App\Http\Controllers\UriController;
 use App\Http\Controllers\CookieController;
 use App\Http\Controllers\UserRegistration;
 
+// Redirect Class 
+use App\Http\Controllers\redirect\RedirectController;
+
+// DB Process
+use App\Http\Controllers\studDetails\StudInsertController;
+use App\Http\Controllers\studDetails\StudViewController;
+use App\Http\Controllers\studDetails\StudUpdateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,6 +106,45 @@ Route::get('/sharingData1', function () {
 Route::get('/sharingData2', function () {
     return view('view.sharingData2');
 });
+
+
+/*
+* REDIRECT PROCESS
+*/
+
+// Redirecting to Named Routes
+Route::get('/test2', function () {
+    return view('redirect.test');
+})->name('testing');
+
+Route::get('/redirect', function () {
+    return redirect()->route('testing');
+});
+
+// Redirecting to Controller Actions
+Route::get('rr', [RedirectController::class, 'index']);
+
+Route::get('/redirectcontroller', function () {
+    return redirect()->action([RedirectController::class, 'index']);
+});
+
+/*
+* DB PROCESS
+*/
+
+// Insert Process
+Route::get('insert', [StudInsertController::class, 'insertform']);
+
+// Create Process
+Route::post('create', [StudInsertController::class, 'insert']);
+
+// Retrive Data
+Route::get('view-records', [StudViewController::class, 'index']);
+
+// Update Process
+Route::get('edit-records', [StudUpdateController::class, 'index']);
+Route::get('edit/{id}', [StudUpdateController::class, 'show']);
+Route::post('edit/{id}', [StudUpdateController::class, 'edit']);
 
 /*
 * LOGIN AND REGISTER PROCESS
