@@ -24,6 +24,21 @@ use App\Http\Controllers\redirect\RedirectController;
 use App\Http\Controllers\studDetails\StudInsertController;
 use App\Http\Controllers\studDetails\StudViewController;
 use App\Http\Controllers\studDetails\StudUpdateController;
+use App\Http\Controllers\studDetails\StudDeleteController;
+
+// session
+use App\Http\Controllers\session\SessionController;
+// valitation
+use App\Http\Controllers\valitation\ValidationController;
+// upload
+use App\Http\Controllers\upload\UploadFileController;
+
+// Mail
+use App\Http\Controllers\mail\MailController;
+
+// ajax
+use App\Http\Controllers\ajax\AjaxController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -57,9 +72,9 @@ Route::resource('my', MyController::class);
 
 Route::controller('test', 'ImplicitController');
 
-class MyClass{
-    public $foo = 'bar';
- }
+//class MyClass{
+//    public $foo = 'bar';
+// }
 
 Route::get('/myclass', [ImplicitController::class, 'index']);
 
@@ -107,11 +122,9 @@ Route::get('/sharingData2', function () {
     return view('view.sharingData2');
 });
 
-
 /*
 * REDIRECT PROCESS
 */
-
 // Redirecting to Named Routes
 Route::get('/test2', function () {
     return view('redirect.test');
@@ -145,6 +158,42 @@ Route::get('view-records', [StudViewController::class, 'index']);
 Route::get('edit-records', [StudUpdateController::class, 'index']);
 Route::get('edit/{id}', [StudUpdateController::class, 'show']);
 Route::post('edit/{id}', [StudUpdateController::class, 'edit']);
+
+// delete process
+Route::get('delete-records', [StudDeleteController::class, 'index']);
+Route::get('delete/{id}', [StudDeleteController::class, 'destroy']);
+
+/*
+* SESSION PROCESS
+*/
+Route::get('session/get', [SessionController::class, 'accessSessionData']);
+Route::get('session/set', [SessionController::class, 'storeSessionData']);
+Route::get('session/remove', [SessionController::class, 'deleteSessionData']);
+
+/*
+* VALITATION PROCESS
+*/
+Route::get('/validation', [ValidationController::class, 'showForm']);
+Route::post('/validation', [ValidationController::class, 'validateForm']);
+
+/*
+* UPLOAD FILE PROCESS
+*/
+Route::get('/uploadfile', [UploadFileController::class, 'index'])->name('uploadfile.index');
+Route::post('/uploadfile', [UploadFileController::class, 'showUploadFile'])->name('uploadfile.showUploadFile');
+
+/*
+* MAIL PROCESS
+*/
+Route::get('sendbasicemail', [MailController::class, 'basicEmail'])->name('sendbasicemail');
+Route::get('sendhtmlemail', [MailController::class, 'htmlEmail'])->name('sendhtmlemail');
+Route::get('sendattachmentemail', [MailController::class, 'attachmentEmail'])->name('sendattachmentemail');
+
+/*
+* AJAX PROCESS
+*/
+Route::view('ajax', 'ajax.message');
+Route::post('/getmsg', [AjaxController::class, 'index']);
 
 /*
 * LOGIN AND REGISTER PROCESS
