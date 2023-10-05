@@ -39,6 +39,9 @@ use App\Http\Controllers\mail\MailController;
 // ajax
 use App\Http\Controllers\ajax\AjaxController;
 
+// App\Exceptions
+use App\Exceptions\FailedToLoadHomePage;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -51,8 +54,20 @@ use App\Http\Controllers\ajax\AjaxController;
 |
 */
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', [
+        'data' => $variableMissing
+    ]);
 });
+
+// Route::get('/', function () {
+//     try {
+//         return view('welcome', [
+//             'data' => $variableMissing
+//         ]);
+//     } catch (Throwable $exception) {
+//         throw new FailedToLoadHomePage($exception->getMessage());
+//     }
+// });
 
 /*
 * EVITANCE PROCESS
