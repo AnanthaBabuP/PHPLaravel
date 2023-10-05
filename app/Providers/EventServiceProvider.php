@@ -20,6 +20,12 @@ class EventServiceProvider extends ServiceProvider
         ],
     ];
 
+    protected $listen2 = [
+        UserRegistered::class => [
+            SendWelcomeEmail::class,
+        ],
+    ];
+
     /**
      * Register any events for your application.
      */

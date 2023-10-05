@@ -42,6 +42,25 @@ use App\Http\Controllers\ajax\AjaxController;
 // App\Exceptions
 use App\Exceptions\FailedToLoadHomePage;
 
+/**
+ * 20231005 Added AB В≥Вс
+ */
+// Pagination
+use App\Http\Controllers\pagination\PaginationController;
+
+// Pagination
+use App\Http\Controllers\contracts\ContractsController;
+
+// ERROR HANDLING
+use App\Exceptions\CustomException;
+
+// ENCRYPTION PROCESS
+use App\Http\Controllers\Encryption\EncryptionController;
+
+//HASHING PROCESS
+use App\Http\Controllers\Hashing\AuthController;
+
+use App\Http\Controllers\RegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -211,6 +230,36 @@ Route::view('ajax', 'ajax.message');
 Route::post('/getmsg', [AjaxController::class, 'index']);
 
 /*
+* PAGENATION PROCESS
+*/
+Route::get('pagination', [PaginationController::class, 'index']);
+
+// DEMO
+Route::get('/cache-demo', [ContractsController::class, 'cacheDemo']);
+
+/*
+* ERORR PROCESS
+*/
+Route::get('/throw-exception', function () {
+    throw new CustomException('This is a custom exception.');
+});
+
+
+/*
+* ENCRYPTION PROCESS
+*/
+Route::get('/encrypt', [EncryptionController::class, 'encrypt']);
+Route::get('/decrypt', [EncryptionController::class, 'decrypt']);
+
+/*
+* HASHING PROCESS
+*/
+Route::post('/hashingRegister', [AuthController::class, 'register']);
+Route::post('/hashingLogin', [AuthController::class, 'login']);
+
+Route::get('/register12', [RegistrationController::class, 'register']);
+
+/*
 * LOGIN AND REGISTER PROCESS
 */
 
@@ -253,10 +302,6 @@ Route::get('returnView/{id}',[FirstController::class, 'returnView']);
 
 Route::get('returnFolderView/{id}',[FirstController::class, 'returnFolderView']);
 
-// definison For component
-// Route::get('test',function(){
-//     return view('components.first-component');
-// });
 
 Route :: get('about/{id}',function($id){
     return 'abouve'.$id;
