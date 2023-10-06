@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Hashing;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-// Hashing import
+
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -17,7 +17,7 @@ class AuthController extends Controller
             'password' => 'required|string|min:8',
         ]);
 
-        $user = new \App\HashingUser([
+        $user = new \App\Hashing([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
@@ -25,7 +25,7 @@ class AuthController extends Controller
 
         $user->save();
 
-        return 'HashingUser registered successfully!';
+        return 'User registered successfully!';
     }
 
     public function login(Request $request)
