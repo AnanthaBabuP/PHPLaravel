@@ -254,8 +254,7 @@ Route::get('/decrypt', [EncryptionController::class, 'decrypt']);
 /*
 * HASHING PROCESS
 */
-Route::post('/hashingRegister', [AuthController::class, 'register']);
-Route::post('/hashingLogin', [AuthController::class, 'login']);
+
 
 Route::get('/register12', [RegistrationController::class, 'register']);
 
@@ -274,7 +273,7 @@ Route::get('/login', [LoginController::class, 'index']);
 Route::post('/check', [LoginController::class, 'check'])->name('check');
 
 // Display registration form
-Route::view('/register', 'register');
+// Route::view('/register', 'register');
 
 // Handle registration form submission
 Route::post('/user/register', [UserRegistration::class, 'postRegister']);
