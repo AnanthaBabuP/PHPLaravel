@@ -22,7 +22,7 @@
         </div>
         @endif
 
-        <form method="post" action="{{ url('/validation') }}">
+        <form method="post" action="{{ url('/validationForm') }}">
             @csrf
 
             <table class="table table-bordered">

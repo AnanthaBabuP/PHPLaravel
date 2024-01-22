@@ -208,7 +208,7 @@ Route::get('session/remove', [SessionController::class, 'deleteSessionData']);
 * VALITATION PROCESS
 */
 Route::get('/validation', [ValidationController::class, 'showForm']);
-Route::post('/validation', [ValidationController::class, 'validateForm']);
+Route::post('/validationForm', [ValidationController::class, 'validateForm']);
 
 /*
 * UPLOAD FILE PROCESS
